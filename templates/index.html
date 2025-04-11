@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+<style> 
+/* Styles for the homepage content */
+.homepage-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 2.8rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  border-radius: 2px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 35px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+a {
+  display: inline-block;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+a:active {
+  transform: translateY(1px);
+}
+
+/* Adding some additional styling for the homepage */
+.hero-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  border-top: 5px solid #3498db;
+  transition: transform 0.3s ease;
+}
+
+.hero-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation for page load */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.homepage-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+  
+  .hero-section {
+    padding: 30px 20px;
+  }
+}</style>
+{% block content %}
+  <div class="homepage-container">
+    <div class="hero-section">
+      <h1>Namaskara to Sanjaya</h1>
+      <p>Verify the authenticity of news by entering a claim.</p>
+      <a href="{{ url_for('submit') }}">Verify News</a>
+    </div>
+  </div>
+{% endblock %}

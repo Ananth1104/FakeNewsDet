@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    /* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Container for main content */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation styling */
+nav {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  box-shadow: 0 2px 15px rgba(52, 152, 219, 0.3);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 18px 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 50%;
+  background-color: white;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 70%;
+}
+
+/* Form styling */
+form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 30px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+textarea, input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+button, .button {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+
+button:hover, .button:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  border-radius: 2px;
+}
+
+/* Enhanced Flash Messages */
+.flash-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flash-message {
+  padding: 15px 20px;
+  color: white;
+  border-radius: 8px;
+  min-width: 250px;
+  text-align: center;
+  display: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.flash-message:hover {
+  transform: translateY(-3px);
+}
+
+.success { 
+  background-color: #4CAF50; 
+}
+
+.danger { 
+  background-color: #f44336; 
+}
+
+.warning { 
+  background-color: #ff9800; 
+}
+
+.info { 
+  background-color: #2196F3; 
+}
+
+/* Results styling */
+.results {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  border-left: 5px solid #3498db;
+}
+
+/* Loading animation */
+.loader {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  margin: 20px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  form {
+    padding: 20px;
+  }
+  
+  textarea, input[type="text"], input[type="email"], input[type="password"] {
+    padding: 12px;
+  }
+  
+  nav ul {
+    flex-direction: column;
+  }
+  
+  nav a {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .flash-message {
+    min-width: 200px;
+  }
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".flash-message").each(function(index) {
+                $(this).delay(index * 1000).fadeIn().delay(3000).fadeOut(); // Delays each message
+            });
+        });
+    </script>
+    <style>
+        .flash-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Spacing between messages */
+        }
+        .flash-message {
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            min-width: 200px;
+            text-align: center;
+            display: none;
+        }
+        .success { background-color: #4CAF50; }  /* Green for success */
+        .danger { background-color: #f44336; }  /* Red for errors */
+        .warning { background-color: #ff9800; } /* Orange for warnings */
+        .info { background-color: #2196F3; }    /* Blue for information */
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('submit') }}">Verify News</a></li>
+        </ul>
+    </nav>
+
+    <!-- Pop-up Flash Messages -->
+    <div class="flash-container">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

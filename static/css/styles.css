@@ -1,0 +1,67 @@
+/* Base styles */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header */
+  .navbar {
+    background-color: #222222;  /* Dark grey header */
+    border-bottom: 1px solid #444;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: #ffffff !important;
+  }
+  
+  /* Main container */
+  .container {
+    padding-top: 20px;
+  }
+  
+  /* Submission Page */
+  .input-box {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .btn-analyze {
+    background-color: #222222;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  .btn-analyze:hover {
+    background-color: #333333;
+  }
+  
+  /* Results Page */
+  .results-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .gauge-container {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .analysis-summary {
+    flex: 2;
+    min-width: 300px;
+    padding: 20px;
+  }
+  .conflicting-sources {
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+  

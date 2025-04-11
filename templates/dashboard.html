@@ -1,0 +1,275 @@
+<!-- Dashboard Page -->
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    /* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Header styling */
+h2 {
+  color: #2c3e50;
+  margin: 30px 0 20px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  border-radius: 2px;
+}
+
+/* Paragraph styling */
+p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* List styling */
+ul {
+  list-style-position: inside;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px 0 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.3s ease;
+}
+
+ul:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+li {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li:hover {
+  background-color: #f5f9ff;
+}
+
+/* Link styling */
+a {
+  display: inline-block;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 10px 10px 10px 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+a:active {
+  transform: translateY(1px);
+}
+
+/* Flash message styling - overriding inline styles to match our design */
+.flash-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  color: white;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  min-width: 250px;
+  text-align: center;
+}
+
+.success { 
+  background-color: #4CAF50 !important; 
+}
+
+.danger { 
+  background-color: #f44336 !important; 
+}
+
+/* Dashboard card styling */
+.dashboard-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  border-left: 5px solid #3498db;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px 0;
+  justify-content: center;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #3498db;
+  margin: 10px 0;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+/* Empty state styling */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #95a5a6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .stats-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  a {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+</style>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".flash-message").fadeIn().delay(3000).fadeOut(); // Show message for 3 seconds then fade out
+        });
+    </script>
+    <style>
+        .flash-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+        .success { background-color: #4CAF50; }  /* Green for success */
+        .danger { background-color: #f44336; }  /* Red for errors */
+    </style>
+</head>
+<body>
+    <!-- <h2> End Semester Project for 22AIE314 Computer Security by Group 6 Batch B</h2>  -->
+    <h2> DisTrack Express - Got nothing to do with Drake</h2>
+    <h2> What are we searcing for today, {{ user_name }} ? </h2>
+
+    <!-- Pop-up Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p>Your search history:</p>
+    <ul>
+        {% for search in search_history %}
+        <li>{{ search }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('submit') }}">Submit News</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <h2>Looks real, sounds true — but facts don’t lie. Check it twice. </h2>
+</body>
+</html>
