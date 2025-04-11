@@ -16,4 +16,4 @@ This project aims to combat the spread of misinformation by verifying the authen
 - Modular backend architecture and fully functional frontend  
 
 ## Architecture
-![System Architecture](./Editor _ Mermaid Chart-2025-04-06-071454.png)
+![System Architecture](./architecture.png)
